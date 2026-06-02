@@ -1,6 +1,8 @@
-# DSB Love Bot
+# Dari Bot
 
-A Slack bot that generates loving messages using Groq AI.
+A Slack bot powered by Groq AI with three commands:
 
-Run `/dsb-love [name]` to get a heartfelt message for someone.
+- `/dsb-love [name]` - Generate a loving message for someone
+- `/dsb-roulette red|black` - Play a quick red/black roulette game
+- `/dsb-explain [topic]` - Get an explanation of any topic
 
