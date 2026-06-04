@@ -13,13 +13,15 @@ const app = new App({
     socketMode: true
 });
 
-app.command("/dsb-love", async ({ command, ack, respond }) => {
+app.command("/dari-love", async ({ command, ack, respond }) => {
     await ack();
 
     const recipient = command.text?.trim();
 
     if (!recipient) {
-        await respond({ text: "Please include who the message is for, like: `/dsb-love Sam`" });
+        await respond({
+            response_type: "in_channel",
+            text: "Please include who the message is for, like: `/dari-love Sam`" });
         return;
     }
 
@@ -39,20 +41,23 @@ app.command("/dsb-love", async ({ command, ack, respond }) => {
         });
 
         const message = result.choices?.[0]?.message?.content?.trim() || `Sending love to ${recipient}!`;
-        await respond({ text: message });
+        await respond({
+            response_type: "in_channel",
+            text: message });
     } catch (error) {
         console.error(error);
-        await respond({ text: "Sorry, I couldn't generate a loving message right now." });
+        await respond({
+            text: "Sorry, I couldn't generate a loving message right now." });
     }
 });
 
-app.command("/dsb-roulette", async ({ command, ack, respond }) => {
+app.command("/dari-roulette", async ({ command, ack, respond }) => {
     await ack();
 
     const userChoice = command.text?.trim().toLowerCase();
 
     if (userChoice !== "red" && userChoice !== "black") {
-        await respond({ text: "Choose one: `/dsb-roulette red` or `/dsb-roulette black`" });
+        await respond({ text: "Choose one: `/dari-roulette red` or `/dari-roulette black`" });
         return;
     }
 
@@ -66,13 +71,13 @@ app.command("/dsb-roulette", async ({ command, ack, respond }) => {
     });
 });
 
-app.command("/dsb-explain", async ({ command, ack, respond }) => {
+app.command("/dari-explain", async ({ command, ack, respond }) => {
     await ack();
 
     const topic = command.text?.trim();
 
     if (!topic) {
-        await respond({ text: "Please provide a topic to explain, like: `/dsb-explain quantum computing`" });
+        await respond({ text: "Please provide a topic to explain, like: `/dari-explain quantum computing`" });
         return;
     }
 
@@ -92,7 +97,9 @@ app.command("/dsb-explain", async ({ command, ack, respond }) => {
         });
 
         const explanation = result.choices?.[0]?.message?.content?.trim() || "Unable to generate explanation.";
-        await respond({ text: explanation });
+        await respond({
+            response_type: "in_channel",
+            text: explanation });
     } catch (error) {
         console.error(error);
         await respond({ text: "Sorry, I couldn't explain that right now." });
